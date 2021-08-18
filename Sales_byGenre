@@ -1,0 +1,5 @@
+SELECT
+	Quantity * UnitPrice AS SalesDollars,
+	TrackId	
+FROM InvoiceLIne
+GROUP BY InvoiceId
