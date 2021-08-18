@@ -1,11 +1,10 @@
 SELECT
-	IL.Quantity * IL.UnitPrice AS SalesDollars,
-	IL.TrackId,
-	T.Name AS TrackName,
-	G.Name AS GenreName
+	G.Name AS GenreName,
+	SUM(IL.Quantity * IL.UnitPrice) AS SalesDollars
 FROM InvoiceLine IL
 LEFT JOIN Track T
 	ON T.TrackId = IL.TrackId
 LEFT JOIN Genre G
 	ON G.GenreId = T.GenreId
-GROUP BY IL.InvoiceId;
+GROUP BY G.Name
+ORDER BY SalesDollars DESC;
